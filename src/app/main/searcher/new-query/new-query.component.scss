@@ -1,0 +1,53 @@
+@import "../../../app.component.scss";
+.space-view {
+    width: 100%;
+    height: 100%;
+    .work-space {
+        @include flex(column, null, null);
+        width: 100%;
+        height: 100%;
+        .search-switcher {
+            flex: none;
+            width: 400px;
+            height: 40px;
+            background-color: $selection-color-second;
+            border: 1px solid $selection-color-second;
+            border-radius: $box-radius;
+            position: relative;
+            z-index: 1;
+            .switcher-trigger {
+                position: absolute;
+                z-index: 5;
+                width: 200px;
+                height: 40px;
+                border: 1px solid $action-color;
+                border-radius: $box-radius;
+                top: -1px;
+                background-color: $action-color;
+                transition: .4s;
+            }
+            .switcher-labels {
+                @include flex(row, space-between, center);
+                width: 400px;
+                height: 40px;
+                position: absolute;
+                z-index: 10;
+                .switcher-label {
+                    @include flex(row, center, center);
+                    width: 200px;
+                    height: 40px;
+                    color: $main-color;
+                    font-family: $font-family;
+                    font-size: 25px;
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
+        }
+        .search-space {
+            width: 100%;
+            height: calc(100% - 80px);
+            margin-top: 40px;
+        }
+    }
+}

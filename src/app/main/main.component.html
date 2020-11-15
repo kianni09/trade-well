@@ -1,0 +1,38 @@
+<div class="space-view">
+    <div class="work-space">
+        <div class="main-head">
+            <div class="head-labels">
+                <div class="logo-block">
+                    <img width="60" height="55" src="/assets/img/logo-tab.png" alt="Logo">
+                    <div class="first-word">Trade</div>
+                    <div class="second-word">Well</div>
+                </div>
+
+                <div class="head-switcher">
+                    <div class="switcher-trigger" [ngStyle]="{'left': switcherPosition}"></div>
+                    <div class="switcher-labels">
+                        <div (click)="switcherAction('search')" class="switcher-label">Пошук</div>
+                        <div (click)="switcherAction('queries')" class="switcher-label">Запити</div>
+                    </div>
+                </div>
+
+                <div class="user-block">
+                    <div class="user-card">
+                        <div class="user-label">
+                            <i class='far fa-user user-icon'></i>
+                            <div class="user-name">Test User</div>
+                        </div>
+                        <div (click)="exit()" class="exit-label">
+                            <i class='fas fa-door-open exit-icon'></i>
+                            <div class="exit-name">Вихід</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="main-root">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

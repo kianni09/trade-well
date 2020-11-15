@@ -1,0 +1,43 @@
+<div class="space-view">
+    <div class="work-space">
+        <div class="title-head">
+            <div class="head-labels">
+                <div class="logo-block">
+                    <img width="60" height="55" src="/assets/img/logo-tab.png" alt="Logo">
+                    <div class="first-word">Trade</div>
+                    <div class="second-word">Well</div>
+                </div>
+                <div class="buttons-block">
+                    <div class="register-button">Приєднатись</div>
+                    <div (click)="login()" class="login-button">Вхід</div>
+                </div>
+            </div>
+        </div>
+        <div class="title-main">
+            <div (click)="swipeData('back')" class="switcher-button">{{'
+                < '}}</div>
+            <div class="card-box">
+                <div [ngClass]="{'card-info ': true, 'card-info-show ': !cardInfoSwipe, 'card-info-hide ': cardInfoSwipe}" >
+                    <div class="first-line">
+                        <img width="300" height="225" [src]="titleData[labelIndex].firstImage" alt="Image">
+                        <div class="text-block">
+                            <div class="title-text">{{titleData[labelIndex].title}}</div>
+                            <div class="main-text">{{titleData[labelIndex].firstText}}</div>
+                        </div>
+                    </div>
+                    <div class="second-line">
+                        <div class="text-block" >
+                            <div class="main-text">{{titleData[labelIndex].secondText}}</div>
+                        </div>
+                        <img width="300" height="225" [src]="titleData[labelIndex].secondImage" alt="Image">
+                    </div>
+
+                </div>
+                <div class="card-labels-position">
+                    <div *ngFor="let label of titleData; let i=index" [ngClass]="{'label-position ': true, 'selected ': i === labelIndex}"></div>
+                </div>
+            </div>
+            <div (click)="swipeData('forward ')" class="switcher-button ">{{">"}}</div>
+        </div>
+    </div>
+</div>

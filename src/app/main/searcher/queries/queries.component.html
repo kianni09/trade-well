@@ -1,0 +1,57 @@
+<div class="space-view">
+    <div class="work-space">
+        <div class="queries-filters">
+            <div class="queries-filter">
+                <div class="filter-name">Дата запиту</div>
+                <i class='fas fa-filter filter-icon'></i>
+            </div>
+            <div class="queries-filter">
+                <div class="filter-name">Тип запиту</div>
+                <i class='fas fa-filter filter-icon'></i>
+            </div>
+            <div class="queries-filter">
+                <div class="filter-name">Категорії запиту</div>
+                <i class='fas fa-filter filter-icon'></i>
+            </div>
+            <div class="queries-filter">
+                <div class="filter-name">Статус запиту</div>
+                <i class='fas fa-filter filter-icon'></i>
+            </div>
+        </div>
+        <div class="queries-list">
+            <div *ngFor="let query of queries; let i=index" class="query">
+                <div class="info-block">
+                    <div class="info-head">Дата запиту:</div>
+                    <div class="info-text">{{query.date | date:"dd.MM.yyyy - HH:mm"}}</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-head">Тип запиту:</div>
+                    <div class="info-text">{{query.type}}</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-head">Категорії запиту:</div>
+                    <div class="info-text">{{query.categories.length === 1?query.categories[0]:query.categories.join(", ")}}</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-head">Статус запиту:</div>
+                    <div class="info-text">{{query.status}}</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-head">Знайдено контактів:</div>
+                    <div class="info-text">{{query.result}}</div>
+                </div>
+
+                <div class="buttons-block">
+                    <div *ngIf="query.status === 'В роботі'" class="option-button wait-button">Недоступно</div>
+                    <div *ngIf="query.status === 'Виконано' || query.status === 'Верифіковано'" class="option-button download-button">Завантажити</div>
+                    <div *ngIf="query.status === 'Виконано'" class="option-button verificated-button">Верифікувати</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

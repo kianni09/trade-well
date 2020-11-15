@@ -1,0 +1,149 @@
+@import "../app.component.scss";
+.space-view {
+    width: 100%;
+    height: 100%;
+    .work-space {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        @include flex(column, flex-start, center);
+        .main-head {
+            @include flex(row, center, center);
+            width: 100%;
+            height: 80px;
+            background-color: $selection-color;
+            position: relative;
+            z-index: 10;
+            .head-labels {
+                @include flex(row, space-between, center);
+                width: calc(100% - 80px);
+                max-width: $workspace-maxwidth;
+                padding: 0px 40px;
+                .logo-block {
+                    @include flex(row, flex-start, center);
+                    font-family: $logo-font;
+                    font-size: 35px;
+                    .first-word {
+                        color: $main-color;
+                        margin: 0px 10px;
+                    }
+                    .second-word {
+                        color: $action-color;
+                    }
+                }
+                .head-switcher {
+                    width: 300px;
+                    height: 40px;
+                    border: 1px solid $action-color;
+                    border-radius: $box-radius;
+                    position: relative;
+                    z-index: 1;
+                    .switcher-trigger {
+                        position: absolute;
+                        z-index: 5;
+                        width: 150px;
+                        height: 40px;
+                        border: 1px solid $action-color;
+                        border-radius: $box-radius;
+                        top: -1px;
+                        background-color: $action-color;
+                        transition: .4s;
+                    }
+                    .switcher-labels {
+                        @include flex(row, space-between, center);
+                        width: 300px;
+                        height: 40px;
+                        position: absolute;
+                        z-index: 10;
+                        .switcher-label {
+                            @include flex(row, center, center);
+                            width: 150px;
+                            height: 40px;
+                            color: $main-color;
+                            font-family: $font-family;
+                            font-size: 25px;
+                            cursor: pointer;
+                            user-select: none;
+                        }
+                    }
+                }
+                .user-block {
+                    position: relative;
+                    z-index: 1;
+                    width: 340px;
+                    height: 80px;
+                    .user-card {
+                        @include flex(column, null, null);
+                        position: absolute;
+                        z-index: 10;
+                        top: 0px;
+                        left: 0px;
+                        width: 100%;
+                        height: calc(100% - 50px);
+                        padding: 25px 0px;
+                        cursor: pointer;
+                        user-select: none;
+                        transition: .4s;
+                        flex: none;
+                        .user-label {
+                            @include flex(row, null, center);
+                            width: calc(100% - 40px);
+                            height: 30px;
+                            padding: 0px 20px;
+                            flex: none;
+                            .user-icon {
+                                display: block;
+                                color: $main-color;
+                                font-size: 25px;
+                                margin-right: 15px;
+                            }
+                            .user-name {
+                                color: $main-color;
+                                font-family: $font-family;
+                                font-size: 25px;
+                            }
+                        }
+                        .exit-label {
+                            display: none;
+                        }
+                        &:hover {
+                            height: 300px;
+                            background-color: $selection-color-second;
+                            border-radius: 6px;
+                            .exit-label {
+                                @include flex(row, null, center);
+                                width: calc(100% - 40px);
+                                height: 30px;
+                                padding: 0px 20px;
+                                margin-top: 20px;
+                                .exit-icon {
+                                    display: block;
+                                    color: $main-color;
+                                    font-size: 25px;
+                                    margin-right: 15px;
+                                }
+                                .exit-name {
+                                    color: $main-color;
+                                    font-family: $font-family;
+                                    font-size: 25px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .main-root {
+            @include custom-scrollbar;
+            padding: 40px;
+            position: relative;
+            z-index: 5;
+            width: calc(100% - 80px);
+            max-width: $workspace-maxwidth;
+            height: calc(100% - 160px);
+            background-color: $main-color;
+            box-shadow: 5px 5px 20px #c4c4c4, -5px -5px 20px #ffffff;
+        }
+    }
+}
