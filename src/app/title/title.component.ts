@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleDataLabel } from '../app.models';
+import { TitleDataLabel, LoginForm, User } from '../app.models';
 import { MainService } from '../services/main.service';
 import { UserService } from '../services/user.service';
 
@@ -47,8 +47,45 @@ export class TitleComponent implements OnInit {
     }, 300 )
   } 
 
-  public login() {
-    this.mainService.navigate("main");
+  public loginWindow: boolean = false;
+  public loadBar: boolean = false;
+  public errorMessage: boolean = false;
+
+  public loginForm: LoginForm = {
+    login: "",
+    password: ""
+  }
+
+  public openWindow() {
+    this.loginWindow = true;
+    //
+  }
+
+  public login () {
+    if ( this.loginForm.login.length > 0 && this.loginForm.password.length > 0 ) {
+      this.loadBar = true;
+      this.userService.login$(this.loginForm).subscribe( (user: User) => {
+        if (user) {
+          console.log(user)
+          localStorage.setItem('TradeWellUser', JSON.stringify(user) );
+          this.userService.user = user;
+          this.mainService.navigate("main");
+        } else {
+          this.loadBar = false;
+          this.errorMessage = true;
+        }
+        
+      } )
+    }
+  }
+
+  public closeLogin(){
+    this.loginWindow = false;
+    this.errorMessage = false;
+    this.loginForm = {
+      login: "",
+      password: ""
+    }
   }
 
 }

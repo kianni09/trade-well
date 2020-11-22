@@ -1,40 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Query } from '../../../app.models';
+import { Query, User } from '../../../app.models';
+import { UserService } from '../../../services/user.service';
+import { SearcherService } from '../../../services/searcher.service';
 
 @Component({
   selector: 'app-queries',
   templateUrl: './queries.component.html',
-  styleUrls: ['./queries.component.scss']
+  styleUrls: ['./queries.component.scss'],
 })
 export class QueriesComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  get user(): User {
+    return this.userService.user;
+  }
+  constructor(
+    private searcherService: SearcherService,
+    private userService: UserService
+  ) {
+    this.getQueries(this.user);
   }
 
-  public queries: Query[] = [
-    {
-      date: "2020-11-12T10:15:48",
-      type: "ФОП",
-      categories: ["Адміністративна"],
-      status: "В роботі",
-      result: "1612"
-    },
-    {
-      date: "2020-10-28T13:25:48",
-      type: "Організації",
-      categories: ["Адміністративна", "Фінансова"],
-      status: "Виконано",
-      result: "25612"
-    },
-    {
-      date: "2020-10-18T15:45:48",
-      type: "Організації",
-      categories: ["Загальна","Адміністративна", "Фінансова"],
-      status: "Верифіковано",
-      result: "3812"
-    }
-  ]
+  ngOnInit(): void {}
 
+  public queries: Query[] = [];
+  public onLoad: boolean = false;
+
+  public download(id: string): void {
+    this.searcherService.download(id);
+  }
+
+  public getQueries(user: User): void {
+    this.onLoad = true;
+    this.searcherService.getQueries$(user).subscribe((queries: Query[]) => {
+      this.queries = queries;
+      console.log(queries)
+      this.onLoad = false;
+    });
+  }
 }

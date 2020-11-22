@@ -10,6 +10,7 @@
             @include flex(row, null, center);
             width: calc(100% - 40px);
             margin: 0px 20px 20px;
+            flex-wrap: wrap;
             .queries-filter {
                 @include flex(row, center, center);
                 width: 250px;
@@ -38,26 +39,46 @@
             }
         }
         .queries-list {
-            @include flex(column, null, null);
+            @include flex(row, null, null);
             @include custom-scrollbar;
+            flex-wrap: wrap;
             width: 100%;
             height: calc(100% - 60px);
             .query {
-                @include flex(row, space-between, null);
-                width: calc(100% - 120px);
-                padding: 40px;
-                margin: 20px 20px;
+                @include flex(column, null, null);
+                width: 320px;
+                height: 450px;
+                padding: 20px;
+                margin: 20px;
                 border-radius: $box-radius;
                 box-shadow: 5px 5px 15px #c4c4c4, -5px -5px 15px #ffffff;
+                align-content: flex-start;
+                box-sizing: content-box;
                 //cursor: pointer;
+                .category-label {
+                    color: $selection-color-second;
+                    font-family: $font-family;
+                    font-size: $title-text-size;
+                    width: 100%;
+                    margin-bottom: 10px;
+                    font-weight: 600;
+                }
+                .info-query {
+                    @include flex(column, null, null);
+                    @include custom-scrollbar;
+                    width: 100%;
+                    height: 220px;
+                }
+                .info-query .info-block,
                 .info-block {
                     @include flex(column, null, null);
-                    width: 150px;
+                    width: 100%;
+                    margin-bottom: 20px;
                     .info-head {
                         color: $text-secondary-color;
                         font-family: $font-family;
                         font-size: $addiction-text-size;
-                        margin-bottom: 10px;
+                        margin-bottom: 5px;
                     }
                     .info-text {
                         color: $text-main-color;
@@ -65,31 +86,27 @@
                         font-size: $main-text-size;
                     }
                 }
-                .buttons-block {
-                    @include flex(column, null, null);
-                    width: 150px;
-                    .option-button {
-                        @include flex(row, center, center);
-                        width: 100%;
-                        height: 25px;
-                        border-radius: $box-radius;
-                        color: $main-color;
-                        font-family: $font-family;
-                        font-size: $addiction-text-size;
-                        margin-bottom: 10px;
-                        user-select: none;
-                    }
-                    .wait-button {
-                        background-color: $text-secondary-color;
-                    }
-                    .download-button {
-                        cursor: pointer;
-                        background-color: $action-color;
-                    }
-                    .verificated-button {
-                        cursor: pointer;
-                        background-color: $selection-color;
-                    }
+                .option-button {
+                    @include flex(row, center, center);
+                    width: 100%;
+                    height: 30px;
+                    border-radius: $box-radius;
+                    color: $main-color;
+                    font-family: $font-family;
+                    font-size: $addiction-text-size;
+                    //margin-bottom: 10px;
+                    user-select: none;
+                }
+                .wait-button {
+                    background-color: $text-secondary-color;
+                }
+                .download-button {
+                    cursor: pointer;
+                    background-color: $action-color;
+                }
+                .verificated-button {
+                    cursor: pointer;
+                    background-color: $selection-color;
                 }
             }
         }

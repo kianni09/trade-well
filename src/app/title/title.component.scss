@@ -2,7 +2,11 @@
 .space-view {
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 1;
     .work-space {
+        position: relative;
+        z-index: 10;
         width: 100%;
         height: 100%;
         @include flex(column, flex-start, center);
@@ -115,6 +119,69 @@
                         background-color: $selection-color;
                     }
                 }
+            }
+        }
+    }
+    .background-blur-template {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        background-color: #00000069;
+        backdrop-filter: blur(5px);
+        z-index: 20;
+        transition: 0.6s;
+        opacity: 0;
+        animation: show 0.6s 1;
+        animation-fill-mode: forwards;
+        @include flex(row, center, center);
+        .login-window {
+            @include flex(column, null, center);
+            width: 280px;
+            padding: 40px 40px;
+            border-radius: $box-radius;
+            background-color: $background-color;
+            position: relative;
+            .close-icon {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 20px;
+                color: $action-color;
+                cursor: pointer;
+            }
+            .input-block {
+                @include flex(column, null, null);
+                width: 100%;
+                margin-bottom: 20px;
+                .input-label {
+                    width: 100%;
+                    padding-bottom: 10px;
+                    font-family: $font-family;
+                    font-size: $title-text-size;
+                    color: $selection-color-second;
+                }
+                .input-field {
+                    @include custom-input;
+                    @include custom-scrollbar;
+                    width: calc(100% - 14px);
+                    font-family: $font-family;
+                    resize: none;
+                }
+            }
+            .error-message {
+                width: 100%;
+                word-wrap: break-word;
+                color: $deccept-color;
+                font-size: $main-text-size;
+                margin-bottom: 20px;
+                font-family: $font-family;
+            }
+            .login-button {
+                @include custom-button($text-main-color, $accept-color);
+                width: calc(100% - 20px);
             }
         }
     }

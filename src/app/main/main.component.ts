@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../app.models';
 import { MainService } from '../services/main.service';
 import { UserService } from '../services/user.service';
-
 
 @Component({
   selector: 'app-main',
@@ -26,7 +26,12 @@ export class MainComponent implements OnInit {
     }
   }
 
+  get user (): User {
+    return this.userService.user;
+  }
+
   public exit () {
+    localStorage.removeItem('TradeWellUser');
     this.mainService.navigate('title');
   }
 

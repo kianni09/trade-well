@@ -1,7 +1,7 @@
 //Colors variables
 $background-color: #f6f5fa; // 1b212c
 $main-color: #ffffff; // 1a1a1a
-$selection-color: #252ab6; //# 283851
+$selection-color: #1e239c; //# 283851
 $selection-color-second: #2c3862;
 $action-color: #eb6e3d; // eb6e3d
 $text-main-color: #161616;
@@ -23,6 +23,23 @@ $box-radius: 6px;
     width: 100vw;
     height: 100vh;
     background-color: $background-color;
+}
+
+.load-animation {
+    width: 250px;
+    height: 5px;
+    background: $text-secondary-color;
+    position: relative;
+    overflow: hidden;
+    &::before {
+        content: '';
+        width: 70px;
+        height: 5px;
+        background-color: $action-color;
+        position: absolute;
+        left: -34px;
+        animation: orangebar 1.4s infinite ease;
+    }
 }
 
 //Mixins
@@ -105,6 +122,12 @@ $box-radius: 6px;
     }
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes orangebar {
+    50% {
+        left: 195px;
     }
 }
 

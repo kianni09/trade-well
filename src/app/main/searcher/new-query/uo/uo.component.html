@@ -6,11 +6,11 @@
                 <div class="search-category-body">
                     <div class="input-block">
                         <div class="input-label">ЄДРПОУ</div>
-                        <textarea class="input-field" placeholder="Введіть ваш перелік ЄДРПОУ організацій"></textarea>
+                        <textarea [(ngModel)]="queryData.edrpou.value" class="input-field" placeholder="Введіть ваш перелік ЄДРПОУ організацій"></textarea>
                     </div>
                     <div class="input-block">
                         <div class="input-label">Назва</div>
-                        <textarea class="input-field" placeholder="Введіть ваш перелік назв організацій"></textarea>
+                        <textarea [(ngModel)]="queryData.name.value" class="input-field" placeholder="Введіть ваш перелік назв організацій"></textarea>
                     </div>
                 </div>
             </div>
@@ -20,29 +20,24 @@
                 <div class="search-category-body">
                     <div class="input-block">
                         <div class="input-label">Область</div>
-                        <div class="select-field">
+                        <textarea [(ngModel)]="queryData.region.value" class="input-field" placeholder="Введіть ваш перелік областей"></textarea>
+                        <!-- <div class="select-field">
                             <div class="select-field-name">Додати</div>
                             <div class="select-field-icon">+</div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="input-block">
                         <div class="input-label">Місто</div>
-                        <div class="select-field">
-                            <div class="select-field-name">Додати</div>
-                            <div class="select-field-icon">+</div>
-                        </div>
+                        <textarea [(ngModel)]="queryData.city.value" class="input-field" placeholder="Введіть ваш перелік міст"></textarea>
                     </div>
                     <div class="input-block">
                         <div class="input-label">Діяльність</div>
-                        <div class="select-field">
-                            <div class="select-field-name">Додати</div>
-                            <div class="select-field-icon">+</div>
-                        </div>
+                        <textarea [(ngModel)]="queryData.kved.value" class="input-field" placeholder="Введіть ваш перелік дільностей"></textarea>
                     </div>
                 </div>
             </div>
 
-            <div class="search-category">
+            <!-- <div class="search-category">
                 <div class="search-category-head">Фінансовий</div>
                 <div class="search-category-body">
 
@@ -124,11 +119,12 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="buttons-block">
-            <div class="search-button">Пошук</div>
-            <div class="clear-button">Очистити</div>
+            <div *ngIf="!onLoad" (click)="search()" class="search-button">Пошук</div>
+            <div *ngIf="!onLoad" (click)="clear()" class="clear-button">Очистити</div>
+            <div *ngIf="onLoad" class="load-animation"></div>
         </div>
     </div>
 

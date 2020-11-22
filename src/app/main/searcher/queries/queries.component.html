@@ -1,11 +1,12 @@
 <div class="space-view">
     <div class="work-space">
         <div class="queries-filters">
-            <div class="queries-filter">
-                <div class="filter-name">Дата запиту</div>
-                <i class='fas fa-filter filter-icon'></i>
+            <div *ngIf="!onLoad" (click)="getQueries(user)" class="queries-filter">
+                <div class="filter-name">Оновити</div>
+                <i class='fas fa-sync-alt filter-icon'></i>
             </div>
-            <div class="queries-filter">
+            <div *ngIf="onLoad" class="load-animation"></div>
+            <!-- <div class="queries-filter">
                 <div class="filter-name">Тип запиту</div>
                 <i class='fas fa-filter filter-icon'></i>
             </div>
@@ -16,40 +17,64 @@
             <div class="queries-filter">
                 <div class="filter-name">Статус запиту</div>
                 <i class='fas fa-filter filter-icon'></i>
-            </div>
+            </div> -->
         </div>
         <div class="queries-list">
             <div *ngFor="let query of queries; let i=index" class="query">
+
+                <div class="category-label">
+                    Запит:
+                </div>
+
+                <div class="info-query">
+                    <div *ngIf="query.edrpou.length > 0" class="info-block">
+                        <div class="info-head">ЄДРПОУ:</div>
+                        <div class="info-text">{{query.edrpou.join(", ")}}</div>
+                    </div>
+
+                    <div *ngIf="query.name.length > 0" class="info-block">
+                        <div class="info-head">Назви:</div>
+                        <div class="info-text">{{query.name.join(", ")}}</div>
+                    </div>
+
+                    <div *ngIf="query.region.length > 0" class="info-block">
+                        <div class="info-head">Області:</div>
+                        <div class="info-text">{{query.region.join(", ")}}</div>
+                    </div>
+
+                    <div *ngIf="query.city.length > 0" class="info-block">
+                        <div class="info-head">Міста:</div>
+                        <div class="info-text">{{query.city.join(", ")}}</div>
+                    </div>
+
+                    <div *ngIf="query.kved.length > 0" class="info-block">
+                        <div class="info-head">Діяльність:</div>
+                        <div class="info-text">{{query.kved.join(", ")}}</div>
+                    </div>
+
+                </div>
+
                 <div class="info-block">
                     <div class="info-head">Дата запиту:</div>
                     <div class="info-text">{{query.date | date:"dd.MM.yyyy - HH:mm"}}</div>
                 </div>
 
-                <div class="info-block">
-                    <div class="info-head">Тип запиту:</div>
-                    <div class="info-text">{{query.type}}</div>
+                <div class="category-label">
+                    Результат:
                 </div>
 
-                <div class="info-block">
-                    <div class="info-head">Категорії запиту:</div>
-                    <div class="info-text">{{query.categories.length === 1?query.categories[0]:query.categories.join(", ")}}</div>
-                </div>
 
-                <div class="info-block">
+                <div *ngIf="query.status !== 'Done'" class="info-block">
                     <div class="info-head">Статус запиту:</div>
-                    <div class="info-text">{{query.status}}</div>
+                    <div class="info-text" [ngStyle]="{'color': query.status === 'In work'? '#1e239c':'#d93128'}">{{query.status === 'In work'? 'В роботі...': 'Сталась помилка'}}</div>
                 </div>
 
-                <div class="info-block">
+                <div *ngIf="query.status === 'Done'" class="info-block">
                     <div class="info-head">Знайдено контактів:</div>
-                    <div class="info-text">{{query.result}}</div>
+                    <div class="info-text">{{query.total}}</div>
                 </div>
 
-                <div class="buttons-block">
-                    <div *ngIf="query.status === 'В роботі'" class="option-button wait-button">Недоступно</div>
-                    <div *ngIf="query.status === 'Виконано' || query.status === 'Верифіковано'" class="option-button download-button">Завантажити</div>
-                    <div *ngIf="query.status === 'Виконано'" class="option-button verificated-button">Верифікувати</div>
-                </div>
+                <div *ngIf="query.status === 'Done'" (click)="download(query._id)" class="option-button download-button">Завантажити</div>
 
             </div>
         </div>
