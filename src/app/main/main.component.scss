@@ -103,7 +103,7 @@
                             .user-name {
                                 color: $main-color;
                                 font-family: $font-family;
-                                font-size: 25px;
+                                font-size: $title-text-size;
                             }
                         }
                         .exit-label {
@@ -129,7 +129,7 @@
                                 .exit-name {
                                     color: $main-color;
                                     font-family: $font-family;
-                                    font-size: 25px;
+                                    font-size: $title-text-size;
                                 }
                             }
                         }
@@ -139,12 +139,12 @@
         }
         .main-root {
             @include custom-scrollbar;
-            padding: 40px;
+            padding: 20px 40px;
             position: relative;
             z-index: 5;
             width: calc(100% - 80px);
             max-width: $workspace-maxwidth;
-            height: calc(100% - 160px);
+            height: calc(100% - 120px);
             background-color: $main-color;
             box-shadow: 5px 5px 20px #c4c4c4, -5px -5px 20px #ffffff;
         }
