@@ -17,8 +17,11 @@ export class UserService {
     private location: Location,
   ) {
     this.UserLoad()
-   }
+  }
 
+  public loginWindow: boolean = false;
+  public registrationWindow: boolean = false;
+  public subscriptionWindow: boolean = false;
 
   public login$(loginForm: LoginForm): Observable<any> {
     return this.http.post( environment.login, loginForm);

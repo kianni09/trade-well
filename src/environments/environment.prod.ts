@@ -1,7 +1,7 @@
-const link = "http://95.181.178.7:5678/"
+const link = "http://46.253.132.73:5678/"
 
 export const environment = {
-  
+
   production: true,
 
   login: link + "user/login",
